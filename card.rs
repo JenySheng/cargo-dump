@@ -403,7 +403,6 @@ pub fn four_of_kind(c: &Vec<Card>) -> f64 {
  
  
  
- 
  pub fn straight_flush(c: &Vec<Card>) -> f64 {
      let a_p : f64 = 0.0;
      let b_p : f64 = 0.0;

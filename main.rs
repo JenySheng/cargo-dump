@@ -18,18 +18,5 @@ fn main() {
     for (key, value) in &result.unwrap() {
         println!("{}: {}", key, value);
     }
-    pub fn C(n:i32,k:i32) ->f64{
-        let mut ans = 1.0;
-        for i in 1..n+1{
-            ans*=i as f64;
-        }
-        for i in 1..k+1{
-            ans/=i as f64;
-        }
-        for i in 1..n-k+1{
-            ans/=i as f64;
-        }
-        return ans;
-     }
      
 }
