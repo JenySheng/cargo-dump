@@ -1,0 +1,44 @@
+body {
+    background-color:rgb(181, 0, 0);
+}
+
+div {
+    margin-top: 35px; 
+    text-align:center;
+    color: white;
+    font-family: Cubano;
+}
+
+p {
+    font-size: 15em;
+}
+
+#title {
+    font-size: 5em;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#buttons-containers {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+#holes-containers {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    margin: 0 20px;
+}
+
+button {
+    width:10%; 
+    height: 300px;
+    font-size:8em;
+    font-family: Cubano;
+    color: white;
+    text-align: center;
+    background-color: #555555;
+    border-width: 8px;
+}
