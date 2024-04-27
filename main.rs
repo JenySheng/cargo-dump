@@ -1,61 +1,22 @@
-use yew::prelude::*;
-// enum Suit {
-//     Hearts,
-//     Diamonds,
-//     Clubs,
-//     Spades,
-// }
-
-struct Model {
-    value : i64
-    // rank: vec<Suit>; 
-    // number: vec<i64>; 
-}
-
-#[function_component(App)]
-fn app() -> Html {
-    let state = use_state(|| Model {
-        value : 0
-    }); 
-
-    let onclick = {
-        let state = state.clone(); 
-
-        Callback::from(move |_| {
-            state.set(Model {
-                value:state.value + 1
-            })
-        })
-    }; 
-
-    let buttons: Html = (0..5).map(|_| {
-        html! {
-            <button onclick = {onclick.clone()}>{"+"}</button>
-        }
-    }).collect(); 
-
-    let holes: Html = (0..2).map(|_| {
-        html! {
-            <button onclick = {onclick.clone()}>{"hole"}</button>
-        }
-    }).collect(); 
-
-    html! {
-        <div>
-            <div id="title">
-                {"welcome to our website!"}
-            </div>
-            <div id = "buttons-containers">
-                {buttons}
-            </div>
-            <div id = "holes-containers">
-                {holes}
-            </div>
-            <p>{state.value}</p>
-        </div>
-    }
-}
+pub mod card;
+use std::collections::HashMap;
+use crate::card::Card;
+use crate::card::Suit;
+use crate::card::hand_odds;
 
 fn main() {
-    yew::start_app::<App>(); 
+    let mut hole: Vec<Card> = vec![];
+    hole.push(Card {rank: 10,suit: Suit::Spades,});
+    hole.push(Card {rank: 11,suit: Suit::Hearts,});
+    let mut comm: Vec<Card> = vec![];
+    // comm.push(Card {rank: 10,suit: Suit::Diamonds,});
+    // comm.push(Card {rank: 11,suit: Suit::Spades,});
+    // comm.push(Card {rank: 12,suit: Suit::Hearts,});
+    
+    println!("{}", comm.len());
+    let mut result: Result<HashMap<String, f64>, String> = hand_odds(&hole,&comm);
+    for (key, value) in &result.unwrap() {
+        println!("{}: {}", key, value);
+    }
+     
 }
