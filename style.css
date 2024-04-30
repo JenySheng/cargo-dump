@@ -1,65 +1,112 @@
-body {
-    background-color: black;
-}
-
-div {
-    margin-top: 35px;
-    text-align: center;
-    color: white;
-    font-family: Cubano;
-}
-
-p {
-    font-size: 15em;
+#background {
+    background-color: green;
+    /* background-position: center; */
+    display: flex;
+    background-repeat: repeat;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100wh;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
 }
 
 #title {
-    font-size: 5em;
-    margin-top: 20px;
-    text-align: center;
+    font-size: 4em; 
+    margin: 20px 0;
+    color: black; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); 
 }
 
-#buttons-containers {
+
+#top-row, #bottom-row {
     display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
-#holes-containers {
+.top-row-button, .bottom-row-button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.5em;
+    width: auto;
+}
+
+.bottom-row-button {
+    margin: 0 50px; 
+}
+
+.top-row-button, .bottom-row-button {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px 40px; 
+    margin: 10px; 
+    font-size: 2em; 
+    border: none; 
+    border-radius: 10px; 
+    background-color: black; 
+    color: white; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    height: 100px; 
+    width: 60px; 
+}
+
+.top-row-button:hover, .bottom-row-button:hover {
+    background-color: black; 
+}
+
+
+.modal {
+    position: fixed;
+    top: 70%; 
+    left: 25%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    z-index: 100;
     display: flex;
-    justify-content: center;
-    padding: 20px 0px;
-    margin: 50px auto 20px auto; 
-}
-
-button {
-    width: 10%;
-    height: 300px;
-    font-size: 8em;
-    font-family: Cubano;
-    color: white;
-    text-align: center;
-    background-color: #555555;
-    border-width: 8px;
-}
-
-.holes {
-    width: 10%; 
-    height: 300px;
-    font-size: 8em;
-    font-family: Cubano;
-    color: white;
-    text-align: center;
-    background-color: #555555;
-    border-width: 8px;
-    margin-left: 150px; 
-    margin-right: 150px; 
-    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.holes span {
-    width: 100%;
-    display: inline-block;
+
+.modal-content {
+    
+    padding: 20px;
+    background-color: #fff; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    text-align: left; 
 }
+
+
+.modal-content p {
+    align-items: center;
+    margin: 5px 0; 
+    /*font-family: 'Arial', sans-serif;  Improve legibility */
+    font-size: 1em; 
+}
+
+
+/*.card-listing {
+    flex-grow: 1;  Allow the card listing to take up most of the space 
+}
+
+.current-cards-info {
+    flex-grow: 0; Prevent the info section from growing 
+    margin-left: 20px; Add some space between the card listing and the info text 
+    white-space: nowrap; /* Ensure the text doesn't wrap 
+}*/
+
+#current-card-info {
+    margin-left: 25%;
+    margin-top: 50px;
+    font-size: 1.5em;
+}
+
