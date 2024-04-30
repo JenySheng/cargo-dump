@@ -1,13 +1,12 @@
 #background {
     background: url("webBG.png"); 
-    background-color: green;
-    /* background-position: center; */
-    display: flex;
+    background-color: white;
     background-repeat: repeat;
+    display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    width: 100wh;
+    width: 100%; 
     margin-top: 0;
     margin-bottom: 0;
     padding: 0;
@@ -20,22 +19,10 @@
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7); 
 }
 
-
 #top-row, #bottom-row {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-}
-
-.top-row-button, .bottom-row-button {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 1.5em;
-    width: auto;
-}
-
-.bottom-row-button {
-    margin: 0 50px; 
 }
 
 .top-row-button, .bottom-row-button {
@@ -52,62 +39,83 @@
     cursor: pointer; 
     transition: background-color 0.3s; 
     height: 100px; 
-    width: 60px; 
+    width: 60px;
 }
 
 .top-row-button:hover, .bottom-row-button:hover {
-    background-color: black; 
+    background-color: #333; 
 }
 
 
 .modal {
     position: fixed;
-    top: 70%; 
-    left: 25%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 
 .modal-content {
-    
+    background: white;
     padding: 20px;
-    background-color: #fff; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-    text-align: left; 
+    border-radius: 5px;
+    position: relative; 
+    width: 80%; 
+    max-width: 600px; 
 }
 
-
-.modal-content p {
+.modal-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin: 5px 0; 
-    /*font-family: 'Arial', sans-serif;  Improve legibility */
-    font-size: 1em; 
 }
 
-
-/*.card-listing {
-    flex-grow: 1;  Allow the card listing to take up most of the space 
+.modal-title {
+    text-align: center;
+    font-size: 24px; 
+    color: #333; 
+    margin-bottom: 20px; 
 }
 
-.current-cards-info {
-    flex-grow: 0; Prevent the info section from growing 
-    margin-left: 20px; Add some space between the card listing and the info text 
-    white-space: nowrap; /* Ensure the text doesn't wrap 
-}*/
+.close-button {
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    outline: none;
+}
+
+.close-button:hover {
+    color: grey; 
+}
+
+.card-button {
+    margin: 5px;
+    padding: 10px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.card-button:hover {
+    background-color: #e0e0e0;
+}
 
 #current-card-info {
-    margin-left: 25%;
-    margin-top: 50px;
+    width: 100%; 
+    text-align: center; 
     font-size: 1.5em;
+    margin-top: 20px; 
 }
 
+.suit-line {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px; 
+}
