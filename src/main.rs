@@ -10,10 +10,10 @@ fn main() {
 
     let mut input = String::new();
     let mut num_lines:i64 = 0;
-    while input!="done\n"&&num_lines<5{
+    while input !="done\n"&&num_lines<5{
         input = String::new();
         io::stdin().read_line(&mut input).expect("Failed to read line");
-        if(input == "done\n"){
+        if(input.trim() == "done"){
             break;
         }
         let c: Vec<&str> = input.split(',').collect();
@@ -109,9 +109,9 @@ fn main() {
         println!("Do you want to continue inputing community cards? y/n");
         let mut input = String::new();
         io::stdin().read_line(&mut input).expect("Failed to read line");
-        match input.as_str(){
-            "y\n" => {},
-            "n\n" => break,
+        match input.as_str().trim(){
+            "y" => {},
+            "n" => break,
             _ => {
                 println!("Invalid input. Try again.");
                 continue;
@@ -166,5 +166,9 @@ fn main() {
             }
         }
         yes_to_com +=1;
+        for card in &community_cards {
+            println!("{}", card.rank);
+        }
+        
     }
 }

@@ -73,7 +73,7 @@ pub fn check_validity(hole_cards: &Vec<Card>, community_cards: &Vec<Card>) -> i6
         }
     }
     for ele in r {
-        if ele>1{
+        if ele>4{
             return 2;
         }
     }
@@ -85,7 +85,7 @@ pub fn hand_odds(hole_cards: &Vec<Card>, community_cards: &Vec<Card>) -> Result<
         return Err(String::from("Invalid number of hole cards. Expected 2."));
     }
     if !(community_cards.len() >= 3 && community_cards.len() <= 5) && !(community_cards.len() == 0)  {
-        return Err(String::from("Invalid number of community cards. Expected at least 3."));
+        return Err(String::from("Invalid number of community cards. Expected at least 3 and at most 5."));
     }
     match check_validity(hole_cards, community_cards){
         1 => return Err(String::from("Error: Same card appeared twice.")),
