@@ -1,5 +1,5 @@
 #background {
-    background: url("webBG.png"); 
+    background: url("webBG.jpg"); 
     background-color: white;
     background-repeat: repeat;
     display: flex;
@@ -118,4 +118,19 @@
     display: flex;
     justify-content: center;
     margin-bottom: 10px; 
+}
+
+#selected-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.selected-card-button {
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
 }
