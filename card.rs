@@ -21,7 +21,64 @@ impl Card {
         Card { rank, suit }
     }
 }
-
+pub fn check_validity(hole_cards: &Vec<Card>, community_cards: &Vec<Card>) -> i64{
+    //check for redundant cards
+    let mut c: Vec<i32> = Vec::with_capacity(53);
+    let mut r: Vec<i32> = Vec::with_capacity(14);
+    for i in 0..53 {
+        c.push(0);
+    }
+    for i in 0..14 {
+        r.push(0);
+    }
+    for ele in hole_cards  {
+        if ele.suit == Suit::Hearts{
+            c[ele.rank as usize]+=1;
+            r[ele.rank as usize]+=1;
+        }
+        if ele.suit == Suit::Diamonds{
+            c[ele.rank as usize+13]+=1;
+            r[ele.rank as usize]+=1;
+        }
+        if ele.suit == Suit::Clubs{
+            c[ele.rank as usize+26]+=1;
+            r[ele.rank as usize]+=1;
+        }
+        if ele.suit == Suit::Spades{
+            c[ele.rank as usize+39]+=1;
+            r[ele.rank as usize]+=1;
+        }
+    }
+    for ele in community_cards {
+        if ele.suit == Suit::Hearts{
+            c[ele.rank as usize]+=1;
+            r[ele.rank as usize]+=1;
+        }
+        if ele.suit == Suit::Diamonds{
+            c[ele.rank as usize+13]+=1;
+            r[ele.rank as usize]+=1;
+        }
+        if ele.suit == Suit::Clubs{
+            c[ele.rank as usize+26]+=1;
+            r[ele.rank as usize]+=1;
+        }
+        if ele.suit == Suit::Spades{
+            c[ele.rank as usize+39]+=1;
+            r[ele.rank as usize]+=1;
+        }
+    }
+    for ele in c {
+        if ele>1{
+            return 1;
+        }
+    }
+    for ele in r {
+        if ele>1{
+            return 2;
+        }
+    }
+    return 0;
+}
 
 pub fn hand_odds(hole_cards: &Vec<Card>, community_cards: &Vec<Card>) -> Result<HashMap<String, f64>, String> {
     if hole_cards.len() != 2 {
@@ -29,6 +86,11 @@ pub fn hand_odds(hole_cards: &Vec<Card>, community_cards: &Vec<Card>) -> Result<
     }
     if !(community_cards.len() >= 3 && community_cards.len() <= 5) && !(community_cards.len() == 0)  {
         return Err(String::from("Invalid number of community cards. Expected at least 3."));
+    }
+    match check_validity(hole_cards, community_cards){
+        1 => return Err(String::from("Error: Same card appeared twice.")),
+        2 => return Err(String::from("Error: Some numbers appeared more than 4 times.")),
+        _ => {},
     }
     if community_cards.len() == 0 {
         return Ok(zero_cards(hole_cards));
@@ -144,7 +206,7 @@ pub fn five_cards(hole: &Vec<Card>, comm: &Vec<Card>) -> HashMap<String, f64> {
             }
            
             if is_straight(num.clone())&&is_flush(hua.clone()){
-                if num[1]!=0 && num[13]!=0{
+                if num[1]!=0 && num[13]!=0 &&num[12] !=0{
                     result.insert(String::from("Royal Flush"), 1.0);
                 }
                 result.insert(String::from("Straight Flush"), 1.0);
