@@ -443,33 +443,32 @@ pub fn C(n:i32,k:i32) ->f64{
 }
 
 pub fn royal_flush(c: &Vec<Card>) -> f64 {
-    //两张同时参与
+    //using two hole cards
     if c[0].suit == c[1].suit && (c[0].rank>=10||c[0].rank == 1)&&(c[1].rank>=10||c[1].rank == 1){
         return C(47,2)/C(50,5)+3.0/C(50,5);
     }
-    //一张都不参与
+    //using no hole cards
     if(c[0].rank<10&&c[0].rank!=1)&&(c[1].rank!=1&&c[1].rank<10){
         return 4.0/C(50,5);
     }
-    //只有一张可以参与
+    //using one hole card
     if(c[0].rank>=10||c[0].rank == 1)&&(c[1].rank!=1&&c[1].rank<10){
         return C(46,1)/C(50,5)+3.0/C(50,5);
     }
     if(c[1].rank>=10||c[1].rank == 1)&&(c[0].rank!=1&&c[0].rank<10){
         return C(46,1)/C(50,5)+3.0/C(50,5);
     }
-    //♥️K 和 ♠️Q
+    //♥️K and ♠️Q
     return 2.0*C(46,1)/C(50,5)+2.0/C(50,5);
 }
 
 pub fn four_of_kind(c: &Vec<Card>) -> f64 {
-    // 两张卡数字相同
+    // hole cards have the same rank
     if c[0].rank == c[1].rank {
-        //五张里面需要两张一定的 or 五张里面有四张一样的
+        // there needs to be 2 cards with the same rank as the hole cards or 4 cards of the same rank.
         return C(48,3)/C(50,5) + 12 as f64/C(50,5);
     }
-    //两张卡数字不相同
-    //五张里面需要两张一定的 * 2 or 五张里面有四张一样的
+    // hole cards have different ranks
     return 2.0* (C(47,2)/C(50,5)) + 11.0/C(50,5);
 }
  
@@ -514,23 +513,23 @@ pub fn full_house(c: &Vec<Card>) -> f64 {
     let mut p3:f64 = 0.0;
     let mut p4:f64 = 0.0;
     if c[0].rank != c[1].rank {
-        //AAABB or AABBB: （带顺序选择A-A-B-除去A和B任意一张-除去A任意一张）* 顺序
+        //AAABB or AABBB: (sequantially choose A-A-B-any card save A and B-any card save A）* number of permutations.
         //2 * (3/50 * 2/49 * 3/48) * 44/47 * 45/46 * A(5,5)
-        //两张都参与
-        p1 = 2.0 * ((C(3, 1) * C(3, 2) * C(45, 2) - 11.0) / C(50, 5));  
-        //一张参与对子
+        //using two hole cards
+        p1 = 2.0 * ((C(3, 1) * C(3, 2) * C(45, 2) - 11.0) / C(50, 5)); 
+        //using one hole card
         p2 = (2.0 * C(3, 1) * C(4, 3) * 11.0 * C(46, 1) - C(3, 1) * C(3, 1) * C(4,3) * 11.0) / C(50,5); 
         p3 = 2.0 * C(3, 2) * C (4, 2) * C(11, 1) * C(40,1) / C(50,5); 
-        //全桌面,首先手牌不一样
+        //using zero hole cards
         p4 = C(4, 2)*C(4,3)*C(11,2)/ C(50,5); 
         return p1 + p2 + p3 + p4;  
     }
-    //两张牌相同（0 + 任意三张一样的/ 1 + 任意两张一样的）
+    //hole cards have the same rank（0 + 3 cards with the same rank/ 1 + 2cards with the same rank）
     if c[0].rank == c[1].rank {
-        //(AAABB+xx）（带顺序选择：A-剩下数字中任意一张（B）-B-除去A和B任意一张-除去A任意一张）* 顺序
+        //(AAABB+xx）
 		//p1 = 2/50 * 48/49 * 3/48 * 44/47 * 45/46
         p1 = C(2,1) * C(12,1)*C(4,2) * C(44,1) * C(40,1) / 2.0 / C(50,5);  		
-        //(AABBB+xx）（带顺序选择：剩下数字中任意一张（B）-B-B-除去A和B任意一张-除去B的任意一张）* 顺序
+        //(AABBB+xx
 		//p2 = 48/50 * 3/49 * 2/48 * 44/47 * 45/46
 	    p2 = C(12,1)*C(4,3) * C(44,2)/C(50,5); 
         //AAABBB+X
@@ -544,7 +543,7 @@ pub fn three_of_kind (c: &Vec<Card>)  -> f64 {
     let mut p1:f64 = 0.0;
     let mut p2:f64 = 0.0;
 	if c[0].rank == c[1].rank {
-        // 1张 + 5张牌里three of a kind且不包含相同数字 - four of kind -full house
+        // a card + three of a kind - four of kind -full house
         //AA ABCDE
         return 2.0 * C(50,4) / C(50,5) - four_of_kind(c) - full_house(c);
     }
