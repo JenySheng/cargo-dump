@@ -68,9 +68,9 @@ fn app() -> Html {
         html! {
             <button class="top-row-button" onclick={move |_| {
                 let title = match n {
-                    1..=3 => "Choose the Flop cards",
-                    4 => "Choose the Turn card",
-                    5 => "Choose the River card",
+                    1..=3 => "Choose the Flop",
+                    4 => "Choose the Turn",
+                    5 => "Choose the River",
                     _ => "Unexpected number",
                 };
                 toggle_modal(title.to_string());
