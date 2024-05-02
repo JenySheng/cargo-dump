@@ -24,7 +24,7 @@ We used Yew to display our front-end. There are the following things that need t
 ## How to successfully get a prediction for your cards? Use following commands in your terminal:
 
 
-  - “trunk serve” (then you can open a web such as google and use “http://localhost:8080/”). Then you can see our UI design of our webpage(if you want to get your prediction in a user friendly website)
+  - `trunk serve` (then you can open a web such as google and use “http://localhost:8080/”). Then you can see our UI design of our webpage(if you want to get your prediction in a user friendly website)
 
-  - open a new terminal, type “cargo run”. Then you can follow the instructions(please follow that or you will get “panicked”) in the terminal. You can get the prediction in the terminal.
-If you want to start a new group of cards, you need to close the terminal and open a new terminal and type "cargo run". 
+  - open a new terminal, type `cargo run`. Then you can follow the instructions(please follow that or you will get “panicked”) in the terminal. You can get the prediction in the terminal.
+If you want to start a new group of cards, you need to close the terminal and open a new terminal and type `cargo run`. 
