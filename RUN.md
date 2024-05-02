@@ -1,14 +1,14 @@
 ## Download the repository:
 - Method 1: directly clone the repository in VScode:
   
-	Open VScode and use the “Clone Git Repository”. Copy and paste the repository URL and then select your preferred repository destination. Then we can open the files in the VScode and run it.
+	Open VScode and use the “Clone Git Repository”. Copy and paste the repository URL [https://github.com/JenySheng/cargo-dump](https://github.com/JenySheng/cargo-dump) and then select your preferred repository destination. Then we can open the files in the VScode and run it.
 
 - Method 2: Using the terminal:
 	Open a new terminal and select your preferred repository destination. For example: if I want to save the folder in the Desktop, I can use the following commands by steps:
 
     1. ~/Desktop
 
-    2. git clone + repository URL
+    2. git clone https://github.com/JenySheng/cargo-dump
 
   Then, I can find that folder on my desktop and open it in the preferred UI, such as the VScode. 
 
